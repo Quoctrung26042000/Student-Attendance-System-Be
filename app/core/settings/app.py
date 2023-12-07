@@ -15,7 +15,7 @@ class AppSettings(BaseAppSettings):
     openapi_prefix: str = ""
     openapi_url: str = "/openapi.json"
     redoc_url: str = "/redoc"
-    title: str = "FastAPI example application"
+    title: str = "FastApi Student Attendance System"
     version: str = "0.0.0"
 
     database_url: PostgresDsn

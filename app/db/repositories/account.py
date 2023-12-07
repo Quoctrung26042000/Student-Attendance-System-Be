@@ -31,11 +31,8 @@ class AccountRepository(BaseRepository):
         username: str,
         email: str,
         password: str,
+        role :int,
     ) -> AccountInDB:
-        
-        # hard code for teacher role 
-        role = 1
-
         account = AccountInDB(username=username, email=email, role=role)
         account.change_password(password)
         async with self.connection.transaction():

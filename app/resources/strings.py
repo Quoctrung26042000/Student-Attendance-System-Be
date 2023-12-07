@@ -5,6 +5,12 @@ ARTICLE_DOES_NOT_EXIST_ERROR = "article does not exist"
 ARTICLE_ALREADY_EXISTS = "article already exists"
 USER_IS_NOT_AUTHOR_OF_ARTICLE = "you are not an author of this article"
 
+GRADE_TAKEN = "grade with this grade_name already exists"
+GRADE_DOES_NOT_EXIST = "grade with grade_name doese not exist"
+
+CLASS_TAKEN = "class with this class_name already exists"
+CLASS_DOES_NOT_EXIST = "class with class_name doese not exist"
+
 INCORRECT_LOGIN_INPUT = "incorrect email or password"
 USERNAME_TAKEN = "user with this username already exists"
 EMAIL_TAKEN = "user with this email already exists"

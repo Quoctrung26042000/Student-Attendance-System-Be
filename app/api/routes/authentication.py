@@ -64,24 +64,17 @@ async def login(
     )
 
 @router.post(
-    "/create",
+    "/account",
     status_code=HTTP_201_CREATED,
     response_model=AccountInResponse,
     name="auth:register",
 )
 async def register(
-    user_create: AccountInCreate = Body(..., embed=True, alias="account"),
+    user_create: AccountInCreate = Body(..., embed=True, alias="register:account"),
     users_repo: AccountRepository = Depends(get_repository(AccountRepository)),
-    user: Account = Depends(get_current_user_authorizer()),
+    # user: Account = Depends(get_current_user_authorizer()),
     settings: AppSettings = Depends(get_app_settings),
 ) -> AccountInResponse:
-    
-    if user.role == 1:
-        raise HTTPException(
-            status_code=HTTP_400_BAD_REQUEST,
-            detail="No Permission",
-        )
-    
     if await check_account_is_taken(users_repo, user_create.username):
         raise HTTPException(
             status_code=HTTP_400_BAD_REQUEST,
@@ -93,7 +86,7 @@ async def register(
             status_code=HTTP_400_BAD_REQUEST,
             detail=strings.EMAIL_TAKEN,
         )
-
+    
     user = await users_repo.create_account(**user_create.dict())
 
     token = jwt.create_access_token_for_user(

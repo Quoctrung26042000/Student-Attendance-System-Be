@@ -5,7 +5,7 @@ from app.models.domain.rwmodel import RWModel
 
 
 class GradeInDB(RWModel, IDModelMixin, DateTimeModelMixin):
-    grade_name: str
+    grade_name: int
 
 class ClassInDB(RWModel, IDModelMixin, DateTimeModelMixin):
     class_name: str

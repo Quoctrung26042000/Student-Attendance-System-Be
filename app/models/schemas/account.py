@@ -13,6 +13,7 @@ class AccountInLogin(RWSchema):
 
 class AccountInCreate(AccountInLogin):
     username: str
+    role : int
 
 
 class AccountInUpdate(BaseModel):

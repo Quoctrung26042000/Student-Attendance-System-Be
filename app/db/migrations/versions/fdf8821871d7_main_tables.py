@@ -93,7 +93,7 @@ def create_teacher_table() -> None:
 
 def create_student_table() -> None :
         op.create_table(
-        "grade",
+        "student",
         sa.Column("id", sa.Integer, primary_key=True),
         sa.Column("name", sa.Text, unique=False, nullable=False, index=True),
         sa.Column(
@@ -117,17 +117,18 @@ def create_class_table() -> None:
         sa.Column(
             "grade_id",
             sa.Integer,
-            sa.ForeignKey("grade.id", ondelete="CASCADE"),
+            sa.ForeignKey("grades.id", ondelete="CASCADE"),
             nullable=False,
         ),
+        sa.Column("quantity", sa.Integer),
         *timestamps(),
     )
 
 def create_grade_table() -> None:
     op.create_table(
-        "grade",
+        "grades",
         sa.Column("id", sa.Integer, primary_key=True),
-        sa.Column("grade_name", sa.Text, unique=True, nullable=False, index=True),
+        sa.Column("grade_name", sa.Integer, unique=True, nullable=False, index=True),
         *timestamps(),
     )
 
@@ -142,7 +143,7 @@ def upgrade() -> None:
 def downgrade() -> None:
     op.drop_table("account")
     op.drop_table("teacher")
-    op.drop_table("account")
+    op.drop_table("student")
     op.drop_table("class")
-    op.drop_table("grade")
+    op.drop_table("grades")
     op.execute("DROP FUNCTION update_updated_at_column")
